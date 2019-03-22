@@ -1,0 +1,127 @@
+//import React from "react";
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button } from "react-native";
+import { MapView, Constants, Location, Permissions } from "expo";
+import { Icon } from 'react-native-elements'
+import MapViewDirections from './src/MapViewDirections';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import BottomNavigation, { FullTab } from 'react-native-material-bottom-navigation'
+
+// You can import from local files----------------------------- for settings page
+import AssetExample from './components/AssetExample';
+
+// or any pure javascript modules available in npm
+import { Card } from 'react-native-paper';
+///------------------------------------------------------------------- for settings page
+
+//coordinates for King George Station DEFAULT
+const KLATITUDE = 49.1828
+const KLONGITUDE = -122.8449;
+
+
+class MapScreen extends React.Component {
+
+/* ----------------DEFAULT SETTINGS FOR MAPVIEW TO EXIST----------------------- */
+state = {
+	location: { coords: { 
+			latitude: KLATITUDE,
+		  longitude: KLONGITUDE,
+          latitudeDelta: 0.0922,
+	longitudeDelta: 0.0421 } },
+	locationResult: null,
+	};
+	
+	/* ----------------FINDS WHERE USER IS----------------------- */
+	componentDidMount() {
+    this._getLocationAsync();
+  }
+
+   _getLocationAsync = async () => {
+   let { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+
+   let location = await Location.getCurrentPositionAsync({});
+   this.setState({ locationResult: JSON.stringify(location), location, });
+ };
+/* ----------------FINDS WHERE USER IS----------------------- */
+
+  render() {
+    return (
+      /*
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home!</Text>
+      </View>
+      */
+      	
+      <MapView
+        style={{
+          flex: 1
+        }}
+
+/* ----------------CHANGES THE STATE LOCATION TO THE DEVICES CURRENT LOCATION----------------------- */
+		region={{ 
+		//latitude: KLATITUDE, 
+		//longitude: KLONGITUDE, 
+    latitude: this.state.location.coords.latitude, 
+		longitude: this.state.location.coords.longitude, 
+
+		latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
+      >
+	    
+    {/* ----------------MARKER THAT POINTS TO USER LOCATION----------------------- */}
+    <MapView.Marker
+	  coordinate={this.state.location.coords}
+	  title="Your Location"
+	  /> 
+
+	  </MapView>
+    );
+  }
+}
+
+{/* ----------------CREATES THE SETTINGS SCREEN----------------------- */}
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.paragraph}>
+          Change code in the editor and watch it change on your phone! Save to get a shareable url.
+        </Text>
+        <Card>
+          <AssetExample />
+        </Card>
+      </View>
+    );
+  }
+}
+
+{/* ----------------CREATES THE BOTTOM MENU----------------------- */}
+const TabNavigator = createBottomTabNavigator({
+  Map: MapScreen,
+  Settings: SettingsScreen,
+
+});
+
+
+export default createAppContainer(TabNavigator);
+
+
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
+  

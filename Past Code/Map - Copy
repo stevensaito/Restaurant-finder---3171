@@ -1,0 +1,93 @@
+//import React from "react";
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button } from "react-native";
+import { MapView, Constants, Location, Permissions } from "expo";
+import { Icon } from 'react-native-elements'
+import MapViewDirections from './MapViewDirections';
+import { IconButton, Colors } from 'react-native-paper';
+
+//OLD MAP WILL BE REMOVED
+
+//coordinates for King George Station DEFAULT
+const KLATITUDE = 49.1828
+const KLONGITUDE = -122.8449;
+
+
+export default class App extends React.Component {
+
+/* ----------------DEFAULT SETTINGS FOR MAPVIEW TO EXIST----------------------- */
+state = {
+	location: { coords: { 
+			latitude: KLATITUDE,
+		  longitude: KLONGITUDE,
+          latitudeDelta: 0.0922,
+	longitudeDelta: 0.0421 } },
+	locationResult: null,
+	};
+	
+	/* ----------------FINDS WHERE USER IS----------------------- */
+	componentDidMount() {
+    this._getLocationAsync();
+  }
+
+   _getLocationAsync = async () => {
+   let { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+
+   let location = await Location.getCurrentPositionAsync({});
+   this.setState({ locationResult: JSON.stringify(location), location, });
+ };
+/* ----------------FINDS WHERE USER IS----------------------- */
+
+  render() {
+    return (
+          
+
+      <MapView
+        style={styles.map}
+        
+
+/* ----------------CHANGES THE STATE LOCATION TO THE DEVICES CURRENT LOCATION----------------------- */
+		region={{ 
+		//latitude: KLATITUDE, 
+		//longitude: KLONGITUDE, 
+    latitude: this.state.location.coords.latitude, 
+		longitude: this.state.location.coords.longitude, 
+
+		latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
+      >
+          {/* ----------------INPUTS SIDE MENU INTO MAP VIEW----------------------- */}
+	      <View style={{flex:1,marginTop:15}}>
+  <IconButton
+    icon="menu"
+    color={Colors.black}
+    size={50}
+    onPress={() =>this.props.navigation.navigate('DrawerToggle')}
+  />
+  </View>  
+{/* ----------------INPUTS SIDE MENU INTO MAP VIEW----------------------- */}
+
+
+    {/* ----------------MARKER THAT POINTS TO USER LOCATION----------------------- */}
+    <MapView.Marker
+	  coordinate={this.state.location.coords}
+	  title="Your Location"
+	  /> 
+
+	  </MapView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }, 
+    map: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+  },
+  });

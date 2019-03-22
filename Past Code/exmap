@@ -1,0 +1,61 @@
+import React, {Component} from 'react';
+import {Text, View, Button, StyleSheet} from 'react-native';
+import { IconButton, Colors } from 'react-native-paper';
+import { SafeAreaView } from 'react-native';
+import Ymapview from '../yelpapi/Ymapview'
+import { Location, Permissions } from 'expo'
+
+// A placeholder until we get our own location
+const region = {
+  latitude: 37.321996988,
+  longitude: -122.0325472123455,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421
+}
+
+export default class App extends React.Component {
+  state = {
+    region: null,
+    coffeeShops: [],
+  }
+  
+  render() {
+    return (
+
+
+      <View style={styles.container}>
+      {/* ----------------MENU BUTTON AND TOP BAR----------------------- */}
+        <View style={styles.headermenu}>
+        <IconButton
+    icon="menu"
+    color={Colors.black}
+    size={50}
+    onPress={() =>this.props.navigation.navigate('DrawerToggle') }
+  />
+        {/*<Text style={styles.title} >Name of App</Text>*/}
+          </View>
+          {/* ----------------MENU BUTTON AND TOP BAR----------------------- */}
+<Text style={styles.title} >This is theSettings Page</Text>
+
+      </View>
+
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+headermenu: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: 0.09,
+    backgroundColor: '#FF7417',
+  },
+  title: {
+    fontFamily: 'Marker Felt',
+    fontSize: 30,
+    color: '#E7E7E6',
+  },
+});
