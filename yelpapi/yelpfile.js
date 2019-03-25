@@ -14,7 +14,9 @@ const getCoffeeShops = userLocation => {
     .get('/businesses/search', {
       //params={'term':'bookstore', 'location':'New York City'}    //ORIGINAL
       params: {
+        //raduis: 0.5,
         //limit: 10,
+        //sort_by: 'distance',
         //categories: 'coffee,coffeeroasteries,coffeeshops',
         categories: 'restaurants,food',    //Determines yelp categories
       
@@ -30,6 +32,8 @@ const getCoffeeShops = userLocation => {
           phone: business.phone,
           city: business.location.display_address,
           rating: business.rating,
+          distance: business.distance,
+          price: business.price,
         }
       })
     )

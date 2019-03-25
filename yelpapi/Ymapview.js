@@ -13,7 +13,7 @@ export default class Map extends Component {
       //title={place.name + " (" + place.phone + ")"}
       title={place.name}
       coordinate={place.coords}
-      description={" " + place.city + "\n" + place.phone}
+      description={place.city + " "}
       
       />
     ))
@@ -35,7 +35,6 @@ export default class Map extends Component {
 }
 const styles = {
   container: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
   }
 }

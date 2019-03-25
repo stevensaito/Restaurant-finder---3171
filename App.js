@@ -1,10 +1,11 @@
 import {DrawerNavigator} from 'react-navigation'; // 1.0.3
 import React, {Component} from 'react'
 
-import MapScreen from './src/Map';
+//import MapScreen from './src/Map';
 //import Settings from './src/Settings';
 import FoodScreen from './src/Food';
-import YMap from './src/YMap';
+import YMapScreen from './src/YMap';
+import FoodListScreen from './src/FoodList';
 
 class App extends Component{
  render(){
@@ -16,9 +17,13 @@ class App extends Component{
 
 const Navegador = DrawerNavigator(
 {
-  Home:{screen:MapScreen},
+  //Home:{screen:MapScreen},
+  //FoodScreen:{screen:FoodScreen},
+  //YMap:{screen:YMap},
+  Home:{screen:YMapScreen},
+  FoodListScreen:{screen:FoodListScreen},
   FoodScreen:{screen:FoodScreen},
-  YMap:{screen:YMap},
+  //MapScreen:{screen:MapScreen},
   //Settings:{screen:Settings}
 }, {
   drawerPosition:'left',
@@ -27,7 +32,7 @@ const Navegador = DrawerNavigator(
   contentOptions:{
     activeTintColor:'#ffffff',
     inactiveTintColor:'#000000',
-    activeBackgroundColor:'#ff5500',
+    activeBackgroundColor:'#6666FF',
     inactiveBackgroundColor:'#ffffff',
     itemsContainerStyle:{
      marginTop:20 

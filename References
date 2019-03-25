@@ -1,6 +1,6 @@
-  - [Yelp Fusion API and Geolocation API with React Native:] (https://medium.com/@vrojdestvenskaia/yelp-fusion-api-and-geolocation-api-with-react-native-73ea6bfed4c8)
+   - [Yelp Fusion API and Geolocation API with React Native:] (https://medium.com/@vrojdestvenskaia/yelp-fusion-api-and-geolocation-api-with-react-native-73ea6bfed4c8)
 
-  -   [yelp search:] (https://www.yelp.com/developers/documentation/v3/business_search)
+   - [Getting yelp search:] (https://www.yelp.com/developers/documentation/v3/business_search)
 
    - [Google Directions:] (https://snack.expo.io/HkjlCvVM4)
 
@@ -10,7 +10,10 @@
 
    - [How to use icon for button] (https://callstack.github.io/react-native-paper/icon-button.html)
 
-   https://blog.expo.io/building-a-coffee-map-with-react-native-and-expo-a00b8f60a4c6
-   https://python.gotrained.com/yelp-fusion-api-tutorial/
-   https://www.yelp.com/developers/documentation/v3/category_list
-   https://www.yelp.ca/developers/documentation/v3/business_search
+   - [Implementation of Yelp API,coffee shop]{https://blog.expo.io/building-a-coffee-map-with-react-native-and-expo-a00b8f60a4c6}
+
+   - [Altering Yelp API settings]{https://python.gotrained.com/yelp-fusion-api-tutorial/}
+
+   - [Yelp API category list, for food, active]{https://www.yelp.com/developers/documentation/v3/category_list}
+
+   - [Yelp Business Search, categories for what to show]{https://www.yelp.ca/developers/documentation/v3/business_search}

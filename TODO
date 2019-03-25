@@ -1,0 +1,16 @@
+Screen for lists of restaurants instead of a map (DONE)
+  Have restaurants information (Maybe description or category)
+  Have clickable links or buttons to call number or something?
+
+Add a title to the header       (FOOD HUNTER)
+    create a new top menu?
+
+Ways to change the restaurant filter
+  more restaurants, specific restaurants  
+      Looking first for hard coding changes.
+      Potentially, make text fields or sliders or radio so user can change it (FAR GOAL)
+
+Change the distance
+
+Change my location to look at places to eat for where I am going (FAR GOAL)
+      Draggable marker and update new pins

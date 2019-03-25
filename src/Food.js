@@ -44,6 +44,7 @@ export default class App extends React.Component {
           </View>
           {/* ----------------MENU BUTTON AND TOP BAR----------------------- */}
 <Text style={styles.title} >This is the Food page</Text>
+<Text style={styles.title} >This is an extra page</Text>
       </View>
 
     );
@@ -58,7 +59,7 @@ headermenu: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flex: 0.09,
-    backgroundColor: '#FF7417',
+    backgroundColor: '#6666FF',
   },
   title: {
     fontFamily: 'Marker Felt',

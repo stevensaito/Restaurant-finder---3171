@@ -11,6 +11,7 @@ import { Location, Permissions } from 'expo'
 import YelpService from '../yelpapi/yelpfile'
 /* ----------------GETS LOCATIONS FOR COFFEE SHOPS----------------------- */
 
+
 // A placeholder until we get our own location
 const region = {
   latitude: 49.1828, //37.321996988,
@@ -55,7 +56,7 @@ getCoffeeShops = async () => {
       });
     }
 
-    let location = await Location.getCurrentPositionAsync({});
+    let location = await Location.getCurrentPositionAsync({});  //grabbing information from the location, 
     const region = {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
@@ -74,9 +75,8 @@ getCoffeeShops = async () => {
 
   render() {
     return (
-      <View style={styles.container}>
-      
-      <View style={styles.headermenu}>
+       <View style={styles.container}>
+        <View style={styles.headermenu}>
         <IconButton
     icon="menu"
     color={Colors.black}
@@ -84,11 +84,11 @@ getCoffeeShops = async () => {
     onPress={() =>this.props.navigation.navigate('DrawerToggle') }
   />
           </View>
-        <Map
-          region={region}
+          <Map
+          region={this.state.region} //This refers to the state region, if you take away this.state, it refers to the const region
           places={this.state.coffeeShops}
         />
-      </View>
+          </View>
     );
   }
 }
@@ -98,14 +98,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   headermenu: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flex: 0.09,
-    backgroundColor: '#FF7417',
+    backgroundColor: '#6666FF',
   },
   title: {
     fontFamily: 'Marker Felt',
