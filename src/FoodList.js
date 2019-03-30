@@ -77,14 +77,18 @@ getCoffeeShops = async () => {
     return (
        <View style={styles.container}>
         <View style={styles.headermenu}>
-        <IconButton
-    icon="menu"
-    color={Colors.black}
-    size={50}
-    onPress={() =>this.props.navigation.navigate('DrawerToggle') }
-  />
-
+        {/*TO CREATE TITLE FOR HEADER, NEED VIEWS WITHIN VIEWS, ONE FOR MENU AND OTHER FOR TITLE AND THEN A CONTAINER FOR THE TWO*/}
+        <View>
+          <IconButton
+            icon="menu"
+            color={Colors.black}
+            size={50}
+            onPress={() => this.props.navigation.navigate('DrawerToggle')}
+          />
           </View>
+          <View style={styles.titlecontainer}>
+          <Text style={styles.title}>Food Hunter</Text>
+        </View></View>
           <List
           region={region}
           places={this.state.coffeeShops}
@@ -105,10 +109,17 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flex: 0.09,
     backgroundColor: '#6666FF',
+    flexDirection: 'row',
   },
   title: {
     fontFamily: 'Marker Felt',
     fontSize: 30,
     color: '#E7E7E6',
+  },
+  titlecontainer: {
+    flex: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#6666FF',
   },
 })

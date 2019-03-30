@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native';
 import { IconButton, Colors } from 'react-native-paper';
 import Map from '../yelpapi/Ymapview'
 /* ----------------GETS THE USERS LOCATION----------------------- */
@@ -16,12 +15,15 @@ import YelpService from '../yelpapi/yelpfile'
 const region = {
   latitude: 49.1828, //37.321996988,
   longitude: -122.8449, //-122.0325472123455,
-  latitudeDelta: 0.0922,
+  latitudeDelta: 0.0722,
   longitudeDelta: 0.0421
 }
 /* ----------------GETS THE USERS LOCATION AND TELL APP HOW MUCH TO ZOOM IN----------------------- */
+/* ----------------DELTA IS HOW ZOOMED THE MAP IS----------------------- */
 const deltas = {
-  latitudeDelta: 0.0922,
+  //latitudeDelta: 0.0922,
+  //longitudeDelta: 0.0421
+  latitudeDelta: 0.0722,
   longitudeDelta: 0.0421
 };
 
@@ -77,13 +79,18 @@ getCoffeeShops = async () => {
     return (
        <View style={styles.container}>
         <View style={styles.headermenu}>
-        <IconButton
-    icon="menu"
-    color={Colors.black}
-    size={50}
-    onPress={() =>this.props.navigation.navigate('DrawerToggle') }
-  />
+        {/*TO CREATE TITLE FOR HEADER, NEED VIEWS WITHIN VIEWS, ONE FOR MENU AND OTHER FOR TITLE AND THEN A CONTAINER FOR THE TWO*/}
+        <View>
+          <IconButton
+            icon="menu"
+            color={Colors.black}
+            size={50}
+            onPress={() => this.props.navigation.navigate('DrawerToggle')}
+          />
           </View>
+          <View style={styles.titlecontainer}> 
+          <Text style={styles.title}>Food Hunter</Text>
+        </View></View>
           <Map
           region={this.state.region} //This refers to the state region, if you take away this.state, it refers to the const region
           places={this.state.coffeeShops}
@@ -104,10 +111,17 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flex: 0.09,
     backgroundColor: '#6666FF',
+    flexDirection: 'row',
   },
-  title: {
+      title: {
     fontFamily: 'Marker Felt',
     fontSize: 30,
     color: '#E7E7E6',
+  },
+  titlecontainer: {
+    flex: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#6666FF',
   },
 })

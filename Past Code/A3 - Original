@@ -2,31 +2,70 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from "react-native";
 import { MapView, Constants, Location, Permissions } from "expo";
-import { Icon } from 'react-native-elements'
-import MapViewDirections from './MapViewDirections';
+import MapViewDirections from './src/MapViewDirections';
+import getDirections from 'react-native-google-maps-directions';
 
+//coordinates for KPU Civic Plaza
+const KLATITUDE = 49.1908
+const KLONGITUDE = -122.8489;
 
-//coordinates for King George Station DEFAULT
-const KLATITUDE = 49.1828
-const KLONGITUDE = -122.8449;
-
+const GOOGLE_MAPS_APIKEY = 'AIzaSyCYvMpmVhFc0ydILEuXGJNYNGFnBoKPCL8';
 
 export default class App extends React.Component {
+	
 
-/* ----------------DEFAULT SETTINGS FOR MAPVIEW TO EXIST----------------------- */
-state = {
-	location: { coords: { 
+	
+	  handleGetDirections = () => {
+    const data = {
+       source: {
+        latitude: this.state.location.coords.latitude, 
+		longitude: this.state.location.coords.longitude, 
+      },
+      destination: {
+        latitude: KLATITUDE,
+        longitude: KLONGITUDE
+      },
+      
+      params: [
+        {
+          key: "travelmode",
+          value: "walking"        // may be "walking", "bicycling" or "transit" as well
+        },
+        {
+          key: "dir_action",
+          value: "navigate"       // this instantly initializes navigation using the given travel mode 
+        }
+      ]
+    }
+ 
+    getDirections(data)
+  }
+	
+	
+	state = {
+	location: { coords: { //latitude: 49.131794,
 			latitude: KLATITUDE,
+          //longitude: -122.870110,
 		  longitude: KLONGITUDE,
           latitudeDelta: 0.0922,
 	longitudeDelta: 0.0421 } },
 	locationResult: null,
+	//location: {coords: { latitude: 37.78825, longitude: -122.4324}},
 	};
 	
-	/* ----------------FINDS WHERE USER IS----------------------- */
+	
 	componentDidMount() {
     this._getLocationAsync();
   }
+	/*
+	  _getLocationAsync = async () => {
+   let { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+
+   let location = await Location.getCurrentPositionAsync({});
+   this.setState({ locationResult: JSON.stringify(location), location, });
+ };
+ */
 
    _getLocationAsync = async () => {
    let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -35,49 +74,102 @@ state = {
    let location = await Location.getCurrentPositionAsync({});
    this.setState({ locationResult: JSON.stringify(location), location, });
  };
-/* ----------------FINDS WHERE USER IS----------------------- */
-
+ 
   render() {
     return (
-
-      
-      /*
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-      */
-      	
+	
+	
       <MapView
         style={{
           flex: 1
         }}
-
-/* ----------------CHANGES THE STATE LOCATION TO THE DEVICES CURRENT LOCATION----------------------- */
+		/*
+        initialRegion={{
+          latitude: 49.131794,
+          longitude: -122.870110,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}*/
 		region={{ 
-		//latitude: KLATITUDE, 
-		//longitude: KLONGITUDE, 
-    latitude: this.state.location.coords.latitude, 
+		latitude: this.state.location.coords.latitude, 
 		longitude: this.state.location.coords.longitude, 
-
+		//latitude: KLATITUDE,
+		  //longitude: KLONGITUDE,
 		latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
       >
-          {/* ----------------INPUTS SIDE MENU INTO MAP VIEW----------------------- */}
-	      <View style={{flex:1,marginTop:25}}>
-  <Text>Ola sou a Terceira tela</Text>
-  <Button title="Abrir Menu" onPress={() =>this.props.navigation.navigate('DrawerToggle')} />
-  </View>  
-{/* ----------------INPUTS SIDE MENU INTO MAP VIEW----------------------- */}
-
-
-    {/* ----------------MARKER THAT POINTS TO USER LOCATION----------------------- */}
-    <MapView.Marker
-	  coordinate={this.state.location.coords}
+	  
+	  
+	  			<View style={Styles.container}	>
+				<Button onPress={this.handleGetDirections} title="Directions" />
+			</View>
+	  
+	  
+	  <MapView.Marker
+	  coordinate={this.state.location.coords
+		 // {latitude: LATITUDE,
+		  //longitude: LONGITUDE,}
+		  ///////Static location works
+		  /*
+		  {{
+		  latitude: 49.131794,
+          longitude: -122.870110,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+		  }}
+		  */
+			}
 	  title="Your Location"
-	  /> 
 
+	  />
+	  <MapView.Marker
+	  coordinate={//this.state.location.coords
+		 {latitude: KLATITUDE,
+		  longitude: KLONGITUDE,}
+		  ///////Static location works
+		  /*
+		  {{
+		  latitude: 49.131794,
+          longitude: -122.870110,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+		  }}
+		  */
+			}
+	  title="KPU Civic Plaza Campus"
+		pinColor='#551A8B'
+	  />
+	    
+		  					<MapViewDirections
+  						origin={{ 
+		latitude: KLATITUDE,
+		  longitude: KLONGITUDE,
+		latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
+  						destination={this.state.location.coords}
+  						apikey={GOOGLE_MAPS_APIKEY}
+  						strokeWidth={3}
+  						strokeColor="hotpink"
+  						onReady={this.onReady}
+  						onError={this.onError}
+  					/>
+		
+
+
+
+
+
+		
+		
 	  </MapView>
+	  
     );
   }
 }
 
 
+
+const Styles = StyleSheet.create({
+  container: {
+					
+  }
+ });
+  

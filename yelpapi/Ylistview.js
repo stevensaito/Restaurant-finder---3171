@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { IconButton, Colors } from 'react-native-paper';
+import {Linking, Button, AppRegistry, Image } from 'react-native';
 
 export default class List extends Component {
+
+ 
   renderPlaces() {
+
+    let Image_Http_URL = { uri: '' };
+
     return this.props.places.map((place, i) => (
-       <View>
+     
       
-        <Text>{"\n"}</Text>
-        <Text style={{fontWeight: 'bold', fontSize: 18}}>{place.name}</Text>
-        <Text>Rating: {place.rating} stars</Text>
-        <Text>Address: {place.city}</Text>
-        <Text>Phone: {place.phone}</Text>
-        <Text>From you: {place.distance} meters</Text>
+       <View style={styles.container}>
+
+        <View>
+          <Image style={styles.image} source={{uri: '' + place.imageURL}}  />
+          </View> 
+
+        <View style={{padding: 10, flex: 1}}>
+          <Text>{"\n"}</Text>
+          <Text style={styles.phoneTextTitle} onPress={ ()=> Linking.openURL(''+place.url)            } >{place.name}</Text>
+          <Text>Rating: {place.rating} stars</Text>
+          <Text>{place.city}</Text>
+          <Text style={styles.phoneText} onPress={ ()=> Linking.openURL('tel:'+place.phone)          } >{place.phone}</Text>
+          <Text>Distance from you: {place.distance.toFixed(2)} meters</Text>
+          </View>
        
         </View>
     ))
@@ -33,17 +47,28 @@ export default class List extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex: 1,
+    backgroundColor: '#F5FCFF', 
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: '#F0F0F0',
+    borderBottomWidth: 5,
   },
-headermenu: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flex: 0.09,
-    backgroundColor: '#6666FF',
+phoneText: {
+    color: '#E91E63',
+    textDecorationLine: 'underline'
   },
-  title: {
-    fontFamily: 'Marker Felt',
-    fontSize: 30,
-    color: '#E7E7E6',
+  phoneTextTitle: {
+    color: 'black',
+    textDecorationLine: 'underline',
+    fontWeight: 'bold',
+    fontSize: 18
+  },
+  image: {
+  
+    width: 100,
+    height: 100,
+    resizeMode: 'stretch'
+  
   },
 })

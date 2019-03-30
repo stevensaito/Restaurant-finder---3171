@@ -1,16 +1,16 @@
-Screen for lists of restaurants instead of a map (DONE)
-  Have restaurants information (Maybe description or category)
-  Have clickable links or buttons to call number or something?
+Settings Screen (MAIN) - Most likely will not work because of refresh
+    Ways to change the restaurant filter 
+    Change the distance in hard code
+          Can change Deltas(zoom) based on how wide radius is. Add .01 to make further out and minus .01 to make closer? (FAR GOAL)
 
-Add a title to the header       (FOOD HUNTER)
-    create a new top menu?
-
-Ways to change the restaurant filter
-  more restaurants, specific restaurants  
-      Looking first for hard coding changes.
-      Potentially, make text fields or sliders or radio so user can change it (FAR GOAL)
-
-Change the distance
+Customize Map look
 
 Change my location to look at places to eat for where I am going (FAR GOAL)
       Draggable marker and update new pins
+      ORRRRRRR
+      Drop a pin for a second location to check out
+
+DIRECTIONS (FAR GOAL)
+      Potential google map
+
+Have map pinpoint closest location of restaurant from user input (FAR GOAL)

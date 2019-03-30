@@ -12,6 +12,7 @@
     "axios": "0.18.0",
     "native-base": "2.12.1",
     "prop-types": "15.7.2",
+    "react-awesome-button": "6.1.0",
     "react-burger-menu": "2.6.5",
     "react-dom": "<17.0.0",
     "react-native-elements": "1.1.0",
@@ -19,6 +20,7 @@
     "react-native-material-bottom-navigation": "1.0.2",
     "react-native-navigation": "2.13.1",
     "react-native-paper": "2.2.8",
+    "react-native-really-awesome-button": "1.4.2",
     "react-native-vector-icons": "6.4.1",
     "react-navigation": "1.0.3",
     "react-sidebar": "3.0.2"

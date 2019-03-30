@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 
 //import MapScreen from './src/Map';
 //import Settings from './src/Settings';
-import FoodScreen from './src/Food';
+import SettingsScreen from './src/Settings';
 import YMapScreen from './src/YMap';
 import FoodListScreen from './src/FoodList';
 
@@ -21,8 +21,8 @@ const Navegador = DrawerNavigator(
   //FoodScreen:{screen:FoodScreen},
   //YMap:{screen:YMap},
   Home:{screen:YMapScreen},
-  FoodListScreen:{screen:FoodListScreen},
-  FoodScreen:{screen:FoodScreen},
+  FoodList:{screen:FoodListScreen},
+  Settings:{screen:SettingsScreen},
   //MapScreen:{screen:MapScreen},
   //Settings:{screen:Settings}
 }, {
