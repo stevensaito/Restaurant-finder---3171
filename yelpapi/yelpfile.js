@@ -17,7 +17,7 @@ const uradius = 3000
 const ulimit = 20
 //Refreshing on app works
 
-const getCoffeeShops = userLocation => {
+const getFoodPlaces = userLocation => { //getCoffeeShops
   return api
     .get('/businesses/search', {
       //params={'term':'bookstore', 'location':'New York City'}    //ORIGINAL
@@ -52,5 +52,5 @@ const getCoffeeShops = userLocation => {
 }
 
 export default {
-  getCoffeeShops,
+  getFoodPlaces,
 }

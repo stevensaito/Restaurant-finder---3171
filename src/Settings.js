@@ -8,7 +8,7 @@ import AwesomeButton from "react-native-really-awesome-button";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { setdistance: 200 };
+    this.state = { setdistance: 3000 };
   }
   getVal(val) {
     console.warn(val);
@@ -35,6 +35,9 @@ export default class App extends React.Component {
 {/* ----------------LOOK AT BETTER WAY TO ORGANIZE THE DIFFERENT VIEWS OF THESE COMPONENTS, WITHOUT THE VIEWS THINGS MOVE TO TOP AND BOTTOM----------------------- */}
         <View style={styles.slidecontainer}>
         <View style={styles.slidecontainer}>
+        <Text  style={styles.descriptionText}>
+           {"\n"} What is the furthest distance you would want to travel {"\n"}
+          </Text>
           <Slider
             style={{ width: 350 }}
             step={1}
@@ -49,10 +52,13 @@ export default class App extends React.Component {
           </Text>
           </View>
           <ScrollView style={styles.checkcontainer}>
-          <CheckBox title="Option 1" checked={this.state.checked} />
-          <CheckBox title="Option 2" checked={this.state.checked} />
-          <CheckBox title="Option 3" checked={this.state.checked} />
-          <CheckBox title="Option 4" checked={this.state.checked} />
+           <Text>
+           {"\n"} Select what kinds of food places you would to see {"\n"}
+          </Text>
+          <CheckBox title="Food" checked={this.state.checked} onValueChange={() => this.setState({ checked: !this.state.checked })}/>
+          <CheckBox title="Restaurants" checked={this.state.checked} />
+          <CheckBox title="Coffee" checked={this.state.checked} />
+          <CheckBox title="Bakery" checked={this.state.checked} />
 
         </ScrollView>
           <View style={styles.buttonContainer}>
@@ -90,6 +96,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 0.5,
     borderColor: '#6666FF',
+    padding: 4,
   },
   distancetext: {
     fontSize: 20,
@@ -111,4 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#6666FF',
   },
+  descriptionText: {
+    alignItems: 'center',
+  }
 });

@@ -31,7 +31,7 @@ const deltas = {
 export default class App extends React.Component {
   state = {
     region: null,
-    coffeeShops: []
+    foodPlaces: []
   };
 
   componentWillMount() {
@@ -40,11 +40,11 @@ export default class App extends React.Component {
 /* ----------------GETS THE USERS LOCATION AND TELL APP HOW MUCH TO ZOOM IN----------------------- */
 
 /* ----------------GETS LOCATIONS FOR COFFEE SHOPS----------------------- */
-getCoffeeShops = async () => {
+getFoodPlaces = async () => {
     const { latitude, longitude } = this.state.region;
     const userLocation = { latitude, longitude };
-    const coffeeShops = await YelpService.getCoffeeShops(userLocation);
-    this.setState({ coffeeShops });
+    const foodPlaces = await YelpService.getFoodPlaces(userLocation);
+    this.setState({ foodPlaces });
   };
 
 /* ----------------GETS LOCATIONS FOR COFFEE SHOPS----------------------- */
@@ -69,7 +69,7 @@ getCoffeeShops = async () => {
 /* ----------------GETS THE USERS LOCATION----------------------- */
 
 /* ----------------GETS LOCATIONS FOR COFFEE SHOPS----------------------- */
-    await this.getCoffeeShops();
+    await this.getFoodPlaces(); //getCoffeeShops
     /* ----------------GETS LOCATIONS FOR COFFEE SHOPS----------------------- */
 
 /* ----------------GETS THE USERS LOCATION----------------------- */
@@ -93,7 +93,7 @@ getCoffeeShops = async () => {
         </View></View>
           <Map
           region={this.state.region} //This refers to the state region, if you take away this.state, it refers to the const region
-          places={this.state.coffeeShops}
+          places={this.state.foodPlaces} //coffeeShops
         />
           </View>
     );
